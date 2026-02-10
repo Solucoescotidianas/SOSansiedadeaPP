@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>SOS Ansiedade</title>
+  <meta name="description" content="SOS Ansiedade — exercício guiado para desacelerar em poucos minutos" />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app" class="screen-container">
+    <!-- Tela 1 — Acolhimento -->
+    <section id="screen-welcome" class="screen active" aria-hidden="false">
+      <div class="card">
+        <h1 class="title">Você está segura agora.</h1>
+        <p class="subtitle">Respire. Vamos desacelerar juntas.</p>
+      </div>
+      <div class="actions">
+        <button id="btn-start" class="primary big" aria-label="Começar agora">Começar agora</button>
+      </div>
+    </section>
+
+    <!-- Tela 2 — Escolha do estado emocional -->
+    <section id="screen-choice" class="screen" aria-hidden="true">
+      <div class="card">
+        <h2 class="title-sm">Como você está agora?</h2>
+      </div>
+
+      <div class="choices">
+        <button class="choice big" data-choice="ansiosa">Estou ansiosa agora</button>
+        <button class="choice big" data-choice="mente">Minha mente não desliga</button>
+        <button class="choice big" data-choice="dormir">Quero dormir melhor</button>
+      </div>
+
+      <div class="actions">
+        <button id="btn-back-from-choice" class="secondary">Voltar</button>
+      </div>
+    </section>
+
+    <!-- Tela 3 — Exercício guiado -->
+    <section id="screen-exercise" class="screen" aria-hidden="true">
+      <div class="exercise-top">
+        <button id="btn-back-from-exercise" class="back small" aria-label="Voltar">←</button>
+        <div class="exercise-info">
+          <h2 id="exercise-title" class="title-sm">Respiração guiada</h2>
+          <div class="time-selector" role="radiogroup" aria-label="Tempo do exercício">
+            <button class="time-option" data-minutes="3" aria-checked="true">3 min</button>
+            <button class="time-option" data-minutes="5" aria-checked="false">5 min</button>
+            <button class="time-option" data-minutes="7" aria-checked="false">7 min</button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button id="btn-audio-toggle" class="time-option" aria-pressed="false" title="Ativar/Desativar som">Som</button>
+        </div>
+      </div>
+
+      <div class="breath-area">
+        <div id="breath-circle" class="breath-circle" aria-live="polite" aria-atomic="true">
+          <span id="breath-text" class="breath-text">Pronta?</span>
+        </div>
+        <div id="timer-display" class="timer">03:00</div>
+      </div>
+
+      <div class="actions">
+        <button id="btn-init-exercise" class="primary big">Iniciar</button>
+      </div>
+    </section>
+
+    <!-- Tela 4 — Encerramento -->
+    <section id="screen-finish" class="screen" aria-hidden="true">
+      <div class="card">
+        <h1 class="title">Você fez o que estava ao seu alcance.</h1>
+        <p class="subtitle">Mesmo alguns minutos ajudam o corpo a se regular.</p>
+      </div>
+
+      <div class="actions actions-vertical">
+        <button id="btn-restart" class="primary big">Repetir exercício</button>
+        <button id="btn-home" class="secondary">Voltar ao início</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
