@@ -1,88 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>SOS Ansiedade</title>
-  <meta name="description" content="SOS Ansiedade — exercício guiado para desacelerar em poucos minutos" />
-  <meta name="theme-color" content="#0b1220" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SOS Ansiedade - Alívio rápido para ansiedade e insônia">
+    <meta name="theme-color" content="#4A5568">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>SOS Ansiedade</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main id="app" class="screen-container">
-    <!-- Tela 1 — Acolhimento -->
-    <section id="screen-welcome" class="screen active" aria-hidden="false">
-      <div class="card">
-        <h1 class="title">Você está segura agora.</h1>
-        <p class="subtitle">Respire. Vamos desacelerar juntas.</p>
-      </div>
-      <div class="actions">
-        <button id="btn-start" class="primary big" aria-label="Começar agora">Começar agora</button>
-      </div>
-    </section>
+    <!-- Language Selector -->
+    <div id="languageSelector" class="language-selector">
+        <button class="lang-btn active" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
 
-    <!-- Tela 2 — Escolha do estado emocional -->
-    <section id="screen-choice" class="screen" aria-hidden="true">
-      <div class="card">
-        <h2 class="title-sm">Como você está agora?</h2>
-      </div>
-
-      <div class="choices">
-        <button class="choice big" data-choice="ansiosa">Estou ansiosa agora</button>
-        <button class="choice big" data-choice="mente">Minha mente não desliga</button>
-        <button class="choice big" data-choice="dormir">Quero dormir melhor</button>
-      </div>
-
-      <div class="actions">
-        <button id="btn-back-from-choice" class="secondary">Voltar</button>
-      </div>
-    </section>
-
-    <!-- Tela 3 — Exercício guiado -->
-    <section id="screen-exercise" class="screen" aria-hidden="true">
-      <div class="exercise-top">
-        <button id="btn-back-from-exercise" class="back small" aria-label="Voltar">←</button>
-        <div class="exercise-info">
-          <h2 id="exercise-title" class="title-sm">Respiração guiada</h2>
-          <div class="time-selector" role="radiogroup" aria-label="Tempo do exercício">
-            <button class="time-option" data-minutes="3" aria-checked="true">3 min</button>
-            <button class="time-option" data-minutes="5" aria-checked="false">5 min</button>
-            <button class="time-option" data-minutes="7" aria-checked="false">7 min</button>
-          </div>
+    <!-- TELA 1 - ACOLHIMENTO -->
+    <section id="screen1" class="screen active">
+        <div class="container">
+            <div class="content-center">
+                <h1 class="main-text" data-i18n="screen1.main">Você está segura agora.</h1>
+                <p class="secondary-text" data-i18n="screen1.secondary">Respire. Não precisa resolver nada.</p>
+                <button class="btn-primary" onclick="goToScreen('screen2')" data-i18n="screen1.button">Começar agora</button>
+            </div>
         </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <button id="btn-audio-toggle" class="time-option" aria-pressed="false" title="Ativar/Desativar som">Som</button>
-        </div>
-      </div>
-
-      <div class="breath-area">
-        <div id="breath-circle" class="breath-circle" aria-live="polite" aria-atomic="true">
-          <span id="breath-text" class="breath-text">Pronta?</span>
-        </div>
-        <div id="timer-display" class="timer">03:00</div>
-      </div>
-
-      <div class="actions">
-        <button id="btn-init-exercise" class="primary big">Iniciar</button>
-      </div>
     </section>
 
-    <!-- Tela 4 — Encerramento -->
-    <section id="screen-finish" class="screen" aria-hidden="true">
-      <div class="card">
-        <h1 class="title">Você fez o que estava ao seu alcance.</h1>
-        <p class="subtitle">Mesmo alguns minutos ajudam o corpo a se regular.</p>
-      </div>
-
-      <div class="actions actions-vertical">
-        <button id="btn-restart" class="primary big">Repetir exercício</button>
-        <button id="btn-home" class="secondary">Voltar ao início</button>
-      </div>
+    <!-- TELA 2 - ESCOLHA -->
+    <section id="screen2" class="screen">
+        <div class="container">
+            <h2 class="question-text" data-i18n="screen2.question">Como você está agora?</h2>
+            <div class="button-group">
+                <button class="btn-choice" onclick="startExercise('sos')">
+                    <span class="choice-icon">⚡</span>
+                    <span data-i18n="screen2.option1">Estou ansiosa agora</span>
+                    <span class="choice-subtitle" data-i18n="screen2.subtitle1">SOS</span>
+                </button>
+                <button class="btn-choice" onclick="startExercise('relax')">
+                    <span class="choice-icon">🌙</span>
+                    <span data-i18n="screen2.option2">Minha mente não desliga</span>
+                    <span class="choice-subtitle" data-i18n="screen2.subtitle2">Relaxar</span>
+                </button>
+                <button class="btn-choice" onclick="startExercise('sleep')">
+                    <span class="choice-icon">😴</span>
+                    <span data-i18n="screen2.option3">Quero dormir melhor</span>
+                    <span class="choice-subtitle" data-i18n="screen2.subtitle3">Dormir</span>
+                </button>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <script src="script.js" defer></script>
+    <!-- TELA 3 - EXERCÍCIO -->
+    <section id="screen3" class="screen">
+        <div class="container exercise-container">
+            <div class="timer-display" id="timerDisplay">3:00</div>
+            
+            <div class="breathing-circle-container">
+                <div class="breathing-circle" id="breathingCircle">
+                    <span class="breathing-text" id="breathingText" data-i18n="screen3.ready">Pronta?</span>
+                </div>
+            </div>
+
+            <div class="exercise-controls">
+                <button class="btn-control" id="startBtn" onclick="toggleExercise()" data-i18n="screen3.start">Iniciar</button>
+                <button class="btn-secondary" onclick="stopExercise()" data-i18n="screen3.stop">Parar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA 4 - ENCERRAMENTO -->
+    <section id="screen4" class="screen">
+        <div class="container">
+            <div class="content-center">
+                <h1 class="main-text" data-i18n="screen4.main">Você fez o que estava ao seu alcance.</h1>
+                <p class="secondary-text" data-i18n="screen4.secondary">Mesmo poucos minutos já ajudam.</p>
+                <button class="btn-primary" onclick="repeatExercise()" data-i18n="screen4.repeat">Repetir exercício</button>
+                <button class="btn-secondary" onclick="goToScreen('screen1')" data-i18n="screen4.home">Voltar ao início</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="translations.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
