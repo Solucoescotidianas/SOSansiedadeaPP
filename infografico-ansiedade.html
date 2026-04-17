@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ansiedade: O Que Está Acontecendo com Você — SOS Mente Acelerada</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f2eef8;--white:#ffffff;--purple:#3d2e6b;--mid:#9b87c4;
+  --pale:#e8e2f5;--gold:#c4922a;--goldlt:#f5e8c8;--text:#3a3060;--muted:#7a6e9a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* HERO */
+.hero{
+  min-height:100vh;background:var(--purple);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:60px 24px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,#9b87c422 0%,transparent 70%);
+  top:-100px;right:-100px;
+}
+.hero::after{
+  content:'';position:absolute;width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,#c4922a18 0%,transparent 70%);
+  bottom:-80px;left:-80px;
+}
+.hero-badge{
+  display:inline-block;border:1px solid #c4b5e8;border-radius:99px;
+  padding:6px 18px;font-size:11px;letter-spacing:.1em;color:#c4b5e8;
+  text-transform:uppercase;margin-bottom:28px;position:relative;z-index:1;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;font-size:clamp(32px,6vw,58px);
+  color:#fff;line-height:1.2;margin-bottom:16px;position:relative;z-index:1;max-width:700px;
+}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero p{font-size:clamp(14px,2vw,17px);color:#c4b5e8;line-height:1.8;max-width:520px;margin-bottom:40px;position:relative;z-index:1}
+.scroll-hint{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;color:#c4b5e8;font-size:12px}
+.scroll-arrow{width:20px;height:20px;border-right:2px solid #c4b5e8;border-bottom:2px solid #c4b5e8;transform:rotate(45deg);animation:bounce 1.5s infinite}
+@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
+
+/* SECTIONS */
+.section{padding:80px 24px;max-width:860px;margin:0 auto}
+.section-tag{
+  display:inline-block;font-size:11px;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mid);background:var(--pale);
+  border-radius:99px;padding:5px 14px;margin-bottom:20px;
+}
+.section h2{
+  font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);
+  color:var(--purple);line-height:1.3;margin-bottom:16px;
+}
+.section h2 em{color:var(--gold);font-style:italic}
+.section-intro{font-size:16px;color:var(--muted);line-height:1.8;max-width:620px;margin-bottom:48px}
+
+/* DIVIDER */
+.wave-div{width:100%;overflow:hidden;line-height:0;margin:-1px 0}
+
+/* STAT CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:60px}
+.stat-card{background:var(--white);border-radius:20px;padding:28px 24px;text-align:center;border-bottom:3px solid var(--mid)}
+.stat-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--purple);line-height:1}
+.stat-unit{font-size:18px;color:var(--gold);font-weight:500}
+.stat-label{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5}
+
+/* BODY DIAGRAM */
+.body-section{background:var(--white);border-radius:28px;padding:40px;margin-bottom:48px}
+.body-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--purple);margin-bottom:32px;text-align:center}
+.body-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center}
+.body-items-left,.body-items-right{display:flex;flex-direction:column;gap:14px}
+.body-item{background:var(--bg);border-radius:14px;padding:14px 16px;border-left:3px solid var(--mid)}
+.body-item.right{border-left:none;border-right:3px solid var(--gold)}
+.body-item h4{font-size:13px;font-weight:500;color:var(--purple);margin-bottom:3px}
+.body-item p{font-size:12px;color:var(--muted);line-height:1.5}
+.body-figure{display:flex;flex-direction:column;align-items:center;gap:4px}
+.body-svg{width:90px}
+
+/* SYMPTOMS */
+.symptoms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:48px}
+.symptom{background:var(--white);border-radius:16px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+.symptom-icon{width:42px;height:42px;border-radius:12px;background:var(--pale);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.symptom h4{font-size:14px;font-weight:500;color:var(--purple);margin-bottom:4px}
+.symptom p{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* DARK SECTION */
+.dark-section{background:var(--purple);padding:80px 24px}
+.dark-inner{max-width:860px;margin:0 auto}
+.dark-section .section-tag{background:#ffffff22;color:#c4b5e8;border:1px solid #c4b5e855}
+.dark-section h2{color:#fff}
+.dark-section .section-intro{color:#c4b5e8}
+
+/* TECHNIQUES */
+.tec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.tec-card{background:#ffffff14;border:1px solid #ffffff22;border-radius:20px;padding:24px}
+.tec-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);opacity:.5;line-height:1;margin-bottom:8px}
+.tec-title{font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:8px}
+.tec-tag{display:inline-block;font-size:10px;padding:3px 9px;border-radius:99px;background:var(--gold);color:#fff;font-weight:500;margin-bottom:12px}
+.tec-steps{display:flex;flex-direction:column;gap:7px}
+.tec-step{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:#c4b5e8;line-height:1.5}
+.tec-step-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+
+/* CICLE SECTION */
+.cycle-section{padding:80px 24px;max-width:860px;margin:0 auto}
+.cycle-wrap{background:var(--white);border-radius:28px;padding:40px;margin-bottom:48px}
+.cycle-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--purple);text-align:center;margin-bottom:36px}
+.cycle{display:flex;flex-wrap:wrap;justify-content:center;gap:0;position:relative}
+.cycle-item{display:flex;flex-direction:column;align-items:center;text-align:center;width:160px;padding:10px}
+.cycle-circle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:10px;position:relative}
+.cycle-circle::after{content:'→';position:absolute;right:-28px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--mid)}
+.cycle-item:last-child .cycle-circle::after{content:'↺';right:-20px;color:var(--gold)}
+.cycle-label{font-size:12px;font-weight:500;color:var(--purple);margin-bottom:4px}
+.cycle-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.cycle-break{background:var(--pale);border-radius:16px;padding:20px 28px;text-align:center;border-left:3px solid var(--gold);margin-top:8px}
+.cycle-break h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--purple);margin-bottom:6px}
+.cycle-break p{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* PRODUCT CTA */
+.cta-section{background:linear-gradient(135deg,var(--purple) 0%,#1a1040 100%);padding:100px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,#9b87c420,transparent 70%);top:-200px;right:-200px}
+.cta-section::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,#c4922a15,transparent 70%);bottom:-150px;left:-150px}
+.cta-inner{max-width:600px;margin:0 auto;position:relative;z-index:1}
+.cta-badge{display:inline-block;background:#c4922a33;border:1px solid var(--gold);border-radius:99px;padding:6px 18px;font-size:11px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:28px}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,46px);color:#fff;line-height:1.25;margin-bottom:16px}
+.cta-section h2 em{color:var(--gold);font-style:italic}
+.cta-section p{font-size:16px;color:#c4b5e8;line-height:1.8;margin-bottom:40px}
+.deliverables{display:flex;flex-direction:column;gap:12px;margin-bottom:40px;text-align:left}
+.deliverable{background:#ffffff0d;border:1px solid #ffffff18;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:center}
+.deliverable-icon{font-size:22px;flex-shrink:0}
+.deliverable h4{font-size:14px;font-weight:500;color:#fff;margin-bottom:2px}
+.deliverable p{font-size:12px;color:#c4b5e8}
+.price-block{margin-bottom:32px}
+.price-old{font-size:14px;color:#c4b5e8;text-decoration:line-through;margin-bottom:4px}
+.price-new{font-family:'Playfair Display',serif;font-size:52px;color:#fff;font-weight:700;line-height:1}
+.price-new span{font-size:24px}
+.price-tag{font-size:13px;color:var(--gold);margin-top:4px}
+.cta-btn{
+  display:inline-block;background:var(--gold);color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500;
+  padding:18px 48px;border-radius:99px;text-decoration:none;
+  transition:transform .2s,opacity .2s;
+}
+.cta-btn:hover{transform:translateY(-2px);opacity:.92}
+.cta-guarantee{font-size:12px;color:#c4b5e8;margin-top:16px}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .body-grid{grid-template-columns:1fr;gap:16px}
+  .body-figure{display:none}
+  .body-items-right .body-item{border-left:3px solid var(--gold);border-right:none}
+  .cycle-item{width:140px}
+  .cycle-circle::after{display:none}
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🧠 Guia completo sobre ansiedade</div>
+  <h1>Por que sua mente <em>não para?</em></h1>
+  <p>Entenda o que está acontecendo no seu corpo, por que a ansiedade trava seu sistema nervoso — e o que realmente funciona para sair disso.</p>
+  <div class="scroll-hint">
+    <span>Role para descobrir</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<svg class="wave-div" viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="#f2eef8"/></svg>
+
+<!-- STATS -->
+<section class="section reveal">
+  <div class="section-tag">📊 Os números da ansiedade no Brasil</div>
+  <h2>Você não está <em>sozinho</em></h2>
+  <p class="section-intro">O Brasil é o país mais ansioso do mundo. E a maioria das pessoas nunca recebeu nenhuma ferramenta prática pra lidar com isso.</p>
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div><span class="stat-num">33</span><span class="stat-unit">%</span></div>
+      <div class="stat-label">dos brasileiros sofrem com transtornos de ansiedade — o maior índice do mundo</div>
+    </div>
+    <div class="stat-card reveal">
+      <div><span class="stat-num">1</span><span class="stat-unit">em 3</span></div>
+      <div class="stat-label">pessoas acorda cansada mesmo depois de dormir horas toda semana</div>
+    </div>
+    <div class="stat-card reveal">
+      <div><span class="stat-num">68</span><span class="stat-unit">%</span></div>
+      <div class="stat-label">nunca tiveram acesso a nenhuma técnica de regulação emocional</div>
+    </div>
+    <div class="stat-card reveal">
+      <div><span class="stat-num">10</span><span class="stat-unit">min</span></div>
+      <div class="stat-label">é o tempo necessário para ativar o sistema nervoso parassimpático e sair do modo alerta</div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE ACONTECE NO CORPO -->
+<section class="section reveal">
+  <div class="section-tag">🫀 O que acontece no seu corpo</div>
+  <h2>A ciência explicada <em>de forma simples</em></h2>
+  <p class="section-intro">Quando a mente acelera, não é fraqueza. É biologia. Seu corpo está seguindo um programa de sobrevivência antigo que foi ativado no mundo moderno.</p>
+  
+  <div class="body-section reveal">
+    <div class="body-title">O que a ansiedade dispara no seu corpo</div>
+    <div class="body-grid">
+      <div class="body-items-left">
+        <div class="body-item">
+          <h4>🧠 Amígdala em alerta</h4>
+          <p>Detecta "perigo" mesmo sem perigo real. Dispara o alarme do corpo.</p>
+        </div>
+        <div class="body-item">
+          <h4>💨 Respiração curta</h4>
+          <p>Fica superficial e rápida, aumentando o CO₂ e gerando mais ansiedade.</p>
+        </div>
+        <div class="body-item">
+          <h4>😤 Adrenalina e cortisol</h4>
+          <p>Hormônios do estresse inundam a corrente sanguínea. Corpo em modo batalha.</p>
+        </div>
+      </div>
+      <div class="body-figure">
+        <svg class="body-svg" viewBox="0 0 90 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- corpo simples -->
+          <circle cx="45" cy="22" r="18" fill="#e8e2f5" stroke="#9b87c4" stroke-width="1.5"/>
+          <text x="45" y="27" text-anchor="middle" font-size="16" fill="#3d2e6b">🧠</text>
+          <rect x="28" y="44" width="34" height="52" rx="8" fill="#e8e2f5" stroke="#9b87c4" stroke-width="1.5"/>
+          <text x="45" y="74" text-anchor="middle" font-size="20" fill="#3d2e6b">💜</text>
+          <rect x="28" y="100" width="14" height="50" rx="7" fill="#e8e2f5" stroke="#9b87c4" stroke-width="1.5"/>
+          <rect x="48" y="100" width="14" height="50" rx="7" fill="#e8e2f5" stroke="#9b87c4" stroke-width="1.5"/>
+          <rect x="10" y="48" width="16" height="38" rx="8" fill="#e8e2f5" stroke="#c4922a" stroke-width="1.5"/>
+          <rect x="64" y="48" width="16" height="38" rx="8" fill="#e8e2f5" stroke="#c4922a" stroke-width="1.5"/>
+          <!-- pontos de tensão -->
+          <circle cx="45" cy="22" r="4" fill="#c4922a" opacity=".6">
+            <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".6;.2;.6" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="45" cy="70" r="4" fill="#c4922a" opacity=".6">
+            <animate attributeName="r" values="4;7;4" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".6;.2;.6" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:6px">pontos de<br>ativação</div>
+      </div>
+      <div class="body-items-right">
+        <div class="body-item right">
+          <h4>❤️ Coração acelerado</h4>
+          <p>Bate mais rápido para bombear sangue. Sensação de pânico se intensifica.</p>
+        </div>
+        <div class="body-item right">
+          <h4>💪 Músculos tensos</h4>
+          <p>Corpo se prepara para fugir ou lutar. Tensão no pescoço, ombros e mandíbula.</p>
+        </div>
+        <div class="body-item right">
+          <h4>🌀 Loop de pensamentos</h4>
+          <p>Cérebro tenta resolver o "perigo". Sem perigo real, fica em loop infinito.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SINTOMAS -->
+<section class="section reveal">
+  <div class="section-tag">🔍 Você se reconhece?</div>
+  <h2>Os sinais que <em>muita gente ignora</em></h2>
+  <p class="section-intro">A mente acelerada se manifesta de formas diferentes em cada pessoa. Veja se algum desses sinais faz parte da sua rotina.</p>
+  <div class="symptoms-grid">
+    <div class="symptom reveal">
+      <div class="symptom-icon">🌙</div>
+      <div>
+        <h4>Insônia por pensamentos</h4>
+        <p>Deita cansado mas a cabeça não para. Fica horas revivendo conversas e planejando cenários.</p>
+      </div>
+    </div>
+    <div class="symptom reveal">
+      <div class="symptom-icon">🥱</div>
+      <div>
+        <h4>Cansaço ao acordar</h4>
+        <p>Dorme horas mas acorda exausto. O sistema nervoso trabalhou a noite toda sem descansar.</p>
+      </div>
+    </div>
+    <div class="symptom reveal">
+      <div class="symptom-icon">😤</div>
+      <div>
+        <h4>Irritação fácil</h4>
+        <p>Pequenas coisas geram reações grandes. Depois vem a culpa por ter reagido assim.</p>
+      </div>
+    </div>
+    <div class="symptom reveal">
+      <div class="symptom-icon">📱</div>
+      <div>
+        <h4>Compulsão pelo celular</h4>
+        <p>Usa o scroll pra desligar a cabeça. Funciona por minutos — depois a ansiedade piora.</p>
+      </div>
+    </div>
+    <div class="symptom reveal">
+      <div class="symptom-icon">⚡</div>
+      <div>
+        <h4>Modo alerta constante</h4>
+        <p>Sensação de que algo ruim vai acontecer. Corpo tenso mesmo sem motivo aparente.</p>
+      </div>
+    </div>
+    <div class="symptom reveal">
+      <div class="symptom-icon">🫁</div>
+      <div>
+        <h4>Aperto no peito</h4>
+        <p>Respiração curta e superficial. Sensação de peso ou pressão sem causa física.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O CICLO DARK -->
+<section style="background:var(--pale);padding:80px 24px">
+<div class="cycle-section" style="padding:0;margin:0 auto">
+  <div class="section-tag">🔄 Por que é tão difícil sair</div>
+  <h2>O ciclo que <em>trava tudo</em></h2>
+  <p class="section-intro">A ansiedade não é só um sentimento. É um ciclo físico que o seu corpo repete automaticamente — até você aprender a interrompê-lo.</p>
+  
+  <div class="cycle-wrap reveal">
+    <div class="cycle-title">O ciclo da mente acelerada</div>
+    <div class="cycle">
+      <div class="cycle-item">
+        <div class="cycle-circle" style="background:#EEEDFE">😰</div>
+        <div class="cycle-label">Gatilho</div>
+        <div class="cycle-desc">Pensamento, situação ou memória ativa o alarme</div>
+      </div>
+      <div class="cycle-item">
+        <div class="cycle-circle" style="background:#faeeda">⚡</div>
+        <div class="cycle-label">Resposta física</div>
+        <div class="cycle-desc">Coração acelera, respiração curta, músculos tensos</div>
+      </div>
+      <div class="cycle-item">
+        <div class="cycle-circle" style="background:#faece7">🌀</div>
+        <div class="cycle-label">Loop mental</div>
+        <div class="cycle-desc">Pensamentos aceleram tentando resolver o "perigo"</div>
+      </div>
+      <div class="cycle-item">
+        <div class="cycle-circle" style="background:#EEEDFE">😩</div>
+        <div class="cycle-label">Exaustão</div>
+        <div class="cycle-desc">Corpo e mente se esgotam mas o ciclo recomeça</div>
+      </div>
+    </div>
+    <div style="margin-top:28px">
+      <div class="cycle-break reveal">
+        <h4>🔓 Como quebrar o ciclo</h4>
+        <p>A única forma de sair é agir <strong>diretamente no corpo</strong> — não na mente. Técnicas de regulação do sistema nervoso interrompem o ciclo na raiz, antes que os pensamentos tomem conta.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TÉCNICAS DARK -->
+<section class="dark-section">
+  <div class="dark-inner">
+    <div class="section-tag">🌿 O que realmente funciona</div>
+    <h2>3 técnicas baseadas em <em>ciência</em></h2>
+    <p class="section-intro">Essas técnicas ativam o sistema nervoso parassimpático — o "freio" do corpo. Funcionam em minutos, sem medicação e sem experiência prévia.</p>
+    <div class="tec-grid">
+      <div class="tec-card reveal">
+        <div class="tec-num">01</div>
+        <div class="tec-title">Respiração 4-7-8</div>
+        <div class="tec-tag">Ansiedade aguda</div>
+        <div class="tec-steps">
+          <div class="tec-step"><div class="tec-step-dot"></div>Inspire pelo nariz por 4 segundos</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>Segure o ar por 7 segundos</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>Expire pela boca por 8 segundos</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>Repita 4 ciclos completos</div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:#c4b5e8;font-style:italic">Ativa o nervo vago em menos de 2 minutos</div>
+      </div>
+      <div class="tec-card reveal">
+        <div class="tec-num">02</div>
+        <div class="tec-title">Grounding 5-4-3-2-1</div>
+        <div class="tec-tag">Pânico e dissociação</div>
+        <div class="tec-steps">
+          <div class="tec-step"><div class="tec-step-dot"></div>5 coisas que você VÊ agora</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>4 coisas que pode TOCAR</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>3 sons que você OUVE</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>2 cheiros e 1 sabor</div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:#c4b5e8;font-style:italic">Traz a mente de volta ao momento presente</div>
+      </div>
+      <div class="tec-card reveal">
+        <div class="tec-num">03</div>
+        <div class="tec-title">Relaxamento muscular</div>
+        <div class="tec-tag">Tensão corporal</div>
+        <div class="tec-steps">
+          <div class="tec-step"><div class="tec-step-dot"></div>Pés — tensione 5s, solte 10s</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>Suba: pernas → abdômen</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>Continue: ombros → mãos</div>
+          <div class="tec-step"><div class="tec-step-dot"></div>Termine no rosto</div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:#c4b5e8;font-style:italic">Libera tensão acumulada em 10-15 minutos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" style="display:block;background:var(--purple)"><path d="M0,40 C360,0 1080,0 1440,40 L1440,40 L0,40 Z" fill="#f2eef8"/></svg>
+
+<!-- O PROTOCOLO COMPLETO -->
+<section class="section reveal">
+  <div class="section-tag">📋 O método completo</div>
+  <h2>O Protocolo SOS de <em>10 minutos</em></h2>
+  <p class="section-intro">Combinando as melhores técnicas de regulação, o Protocolo SOS guia você passo a passo até o alívio — mesmo nas crises mais intensas.</p>
+  
+  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:48px">
+    {steps}
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-badge">✨ Oferta especial</div>
+    <h2>Sua mente mais leve <em>começa agora.</em></h2>
+    <p>Tudo que você precisa para desacelerar, sair das crises e recuperar o controle — em um único produto acessível.</p>
+    
+    <div class="deliverables">
+      <div class="deliverable">
+        <div class="deliverable-icon">📄</div>
+        <div>
+          <h4>Protocolo SOS em PDF</h4>
+          <p>Método passo a passo de 10 minutos para qualquer situação</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon">🤖</div>
+        <div>
+          <h4>Mentor Serenity — IA 24h</h4>
+          <p>Suporte emocional disponível a qualquer hora no seu celular</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon">🆘</div>
+        <div>
+          <h4>Kit Socorro Imediato</h4>
+          <p>Técnicas de emergência para quando a ansiedade bate forte agora</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-block">
+      <div class="price-old">De R$97,00</div>
+      <div class="price-new"><span>R$</span>27</div>
+      <div class="price-tag">Acesso imediato · Uso vitalício · Sem mensalidade</div>
+    </div>
+
+    <a href="https://pay.kiwify.com.br/rpnTNTQ" class="cta-btn">🌿 Quero Desacelerar Minha Mente</a>
+    <div class="cta-guarantee">🔒 Compra segura via Kiwify · 🔄 7 dias de garantia total</div>
+  </div>
+</section>
+
+<script>
+// Replace steps placeholder
+document.querySelector('.section').innerHTML = document.querySelector('.section').innerHTML.replace('{steps}','');
+
+const steps = [
+  {num:'01', title:'Reconheça', color:'#EEEDFE', border:'#9b87c4', desc:'Perceba onde a tensão está no seu corpo. Sem julgamento — só observe com curiosidade.'},
+  {num:'02', title:'Respire', color:'#faeeda', border:'#c4922a', desc:'Use a respiração 4-7-8 para ativar o freio do sistema nervoso. O resultado é quase imediato.'},
+  {num:'03', title:'Ancore', color:'#e1f5ee', border:'#1D9E75', desc:'O Grounding 5-4-3-2-1 traz sua mente de volta ao momento presente e interrompe o loop.'},
+  {num:'04', title:'Libere', color:'#faece7', border:'#c4775a', desc:'Relaxamento muscular progressivo solta a tensão física acumulada no corpo durante a crise.'},
+  {num:'05', title:'Restaure', color:'#EEEDFE', border:'#9b87c4', desc:'Permita o processo completar. Mão no peito, respiração natural. Você está seguro agora.'},
+];
+
+const container = document.querySelectorAll('.section')[4].querySelector('div');
+container.innerHTML = steps.map(s => `
+  <div class="reveal" style="background:white;border-radius:16px;padding:20px 24px;display:flex;gap:18px;align-items:flex-start;border-left:4px solid ${s.border}">
+    <div style="width:42px;height:42px;border-radius:12px;background:${s.color};display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:${s.border};flex-shrink:0">${s.num}</div>
+    <div>
+      <h4 style="font-family:'Playfair Display',serif;font-size:17px;color:#3d2e6b;margin-bottom:5px">${s.title}</h4>
+      <p style="font-size:13px;color:#7a6e9a;line-height:1.65">${s.desc}</p>
+    </div>
+  </div>
+`).join('');
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
